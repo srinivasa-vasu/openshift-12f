@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ImageStream
+metadata:
+  name: config-service
+  labels:
+    app: config-service
+spec:

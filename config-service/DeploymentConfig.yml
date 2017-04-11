@@ -1,0 +1,49 @@
+apiVersion: v1
+kind: DeploymentConfig
+metadata:
+  name: config-service
+  labels:
+    app: config-service
+spec:
+  strategy:
+    type: Rolling
+    rollingParams:
+      updatePeriodSeconds: 1
+      intervalSeconds: 1
+      timeoutSeconds: 600
+      maxUnavailable: 25%
+      maxSurge: 25%
+    resources:
+  triggers:
+    -
+      type: ConfigChange
+    -
+      type: ImageChange
+      imageChangeParams:
+        automatic: true
+        containerNames:
+          -
+            config-service
+        from:
+          kind: ImageStreamTag
+          name: 'config-service:latest'
+  replicas: 1
+  selector:
+    app: config-service
+  template:
+    metadata:
+      labels:
+        app: config-service
+    spec:
+      containers:
+        -
+          name: config-service
+          image: config-service
+          ports:
+            -
+              containerPort: 8888
+              protocol: TCP
+          resources:
+          imagePullPolicy: Always
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30

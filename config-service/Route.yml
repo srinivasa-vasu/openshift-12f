@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Route
+metadata:
+  name: config-service
+  labels:
+    app: config-service
+spec:
+  to:
+    kind: Service
+    name: config-service
+    weight: 100
+  port:
+    targetPort: config-service

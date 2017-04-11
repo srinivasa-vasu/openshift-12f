@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: BuildConfig
+metadata:
+  name: config-service
+  labels:
+    app: config-service
+spec:
+  triggers:
+    -
+      type: GitHub
+      github:
+        secret: "secret101"
+    -
+      type: Generic
+      generic:
+        secret: "secret201"
+    -
+      type: ImageChange
+    -
+      type: ConfigChange
+  runPolicy: Serial
+  source:
+    type: "Git"
+    git:
+      uri: "https://github.com/srinivasa-vasu/openshift-12f.git"
+      ref: "master"
+    contextDir: "config-service"
+  strategy:
+    type: Source
+    sourceStrategy:
+      from:
+        kind: ImageStreamTag
+        namespace: openshift
+        name: 'fis-java-openshift:2.0'
+  output:
+    to:
+      kind: ImageStreamTag
+      name: 'config-service:latest'
