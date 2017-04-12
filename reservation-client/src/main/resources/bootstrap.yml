@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: reservation-client
+  cloud:
+    config:
+      uri: ${config_service:http://localhost:8888}
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${eureka_service:http://localhost:8761/eureka}
+peer:
+  service:
+    name: ${peer_service:reservation_service}
+

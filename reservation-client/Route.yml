@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Route
+metadata:
+  name: reservation-client
+  labels:
+    app: reservation-client
+spec:
+  to:
+    kind: Service
+    name: reservation-client
+    weight: 100
+  port:
+    targetPort: reservation-client
