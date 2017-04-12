@@ -49,5 +49,7 @@ This is more about using OC CLI to create the individual components
 
 > oc new-app config-service -l app=config-service
 
+>oc patch dc/config-service -p '{"spec":{"template":{"spec":{"containers":[{"name":"config-service","ports":[{"name":"app","containerPort":"8888","protocol":"TCP"}]}]}}}}'
+
 > oc expose svc/config-service
 
