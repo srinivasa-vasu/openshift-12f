@@ -13,7 +13,7 @@ Spring Cloud Config Server on OpenShift
 
 2. Run config server template yaml file which would create *ImageStream*, *BuildConfig*, *DeploymentConfig*, *Service* and *Route* in sequence
 
-> oc process -f ConfigServerTemplate.yml | oc create -f -
+> oc process -f ConfigServiceTemplate.yml | oc create -f -
 
 ## Option 2:
 
