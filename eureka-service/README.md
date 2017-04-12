@@ -2,14 +2,15 @@ Spring Cloud Registry Server on OpenShift <sup>![Build Status](https://travis-ci
 -----------------------------------------
 ![OCP](https://blog.openshift.com/wp-content/uploads/Logotype_RH_OpenShiftContainerPlatform_wLogo_CMYK_Black-1024x263.jpg "OCP")
 
-### Spring cloud registry server can be deployed in many ways, have listed down 3 most common ways:
+### Spring cloud registry service can be deployed in many ways, have listed down 3 most common ways:
 ***
 
 ## Option 1: 
 
-1. Create a new-project in OCP
+1. Create a new-project (12f) in OCP, and install [config-service](https://github
+.com/srinivasa-vasu/openshift-12f/tree/master/config-service)
 
-> oc new-project 12f
+> oc project 12f
 
 2. Run registry server template yaml file which would create *ImageStream*, *BuildConfig*, *DeploymentConfig*, *Service* and *Route* in sequence
 
@@ -19,7 +20,10 @@ Spring Cloud Registry Server on OpenShift <sup>![Build Status](https://travis-ci
 
 Instead of running the template, OC objects can be created in sequence using the individual yaml files
 
-> oc new-project 12f
+1. Create a new-project (12f) in OCP, and install [config-service](https://github
+.com/srinivasa-vasu/openshift-12f/tree/master/config-service)
+
+> oc project 12f
 
 > oc create -f ImageStream.yml
 
