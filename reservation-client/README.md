@@ -16,7 +16,7 @@ listed down 3 most common ways:
 
 2. Run registry server template yaml file which would create *ImageStream*, *BuildConfig*, *DeploymentConfig*, *Service* and *Route* in sequence
 
-> oc process -f ReservationServiceTemplate.yml | oc create -f -
+> oc process -f ReservationServiceAPITemplate.yml | oc create -f -
 
 ## Option 2:
 

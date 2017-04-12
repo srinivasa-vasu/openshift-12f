@@ -3,10 +3,10 @@ kind: Template
 metadata:
   name: reservation-client
   annotations:
-    description: Application template of 12f spring-boot msa
+    description: Application template of 12f spring-boot API gateway
     tags: spring-boot,reservation-client,oc,12f,msa
     version: "1.0"
-    openshift.io/display-name: "12f Reservation Client Micro-Service"
+    openshift.io/display-name: "12f Reservation Client API Micro-Service"
 labels:
   app: reservation-client
   createdBy: SV
