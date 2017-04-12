@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: DeploymentConfig
 metadata:
-  name: config-service
+  name: eureka-service
   labels:
-    app: config-service
+    app: eureka-service
 spec:
   strategy:
     type: Rolling
@@ -23,31 +23,35 @@ spec:
         automatic: true
         containerNames:
           -
-            config-service
+            eureka-service
         from:
           kind: ImageStreamTag
-          name: 'config-service:latest'
+          name: 'eureka-service:latest'
   replicas: 1
   selector:
-    app: config-service
+    app: eureka-service
   template:
     metadata:
       labels:
-        app: config-service
+        app: eureka-service
     spec:
       containers:
         -
-          name: config-service
-          image: config-service
+          name: eureka-service
+          image: eureka-service
           ports:
             -
               name: app
-              containerPort: 8888
+              containerPort: 8761
               protocol: TCP
             -
               name: jolokia
               containerPort: 8778
               protocol: TCP
+          env:
+            -
+              name: config.service
+              value: http://config-service
           resources:
           imagePullPolicy: Always
       restartPolicy: Always

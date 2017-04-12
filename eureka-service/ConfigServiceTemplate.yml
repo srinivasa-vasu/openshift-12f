@@ -1,22 +1,28 @@
 apiVersion: v1
 kind: Template
 metadata:
-  name: config-service
+  name: eureka-service
   annotations:
-    description: Application template of 12f spring-boot config service
-    tags: spring-boot,config-service,oc,12f
+    description: Application template of 12f spring-boot registry service based on eureka
+    tags: spring-boot,eureka-service,oc,12f,registry
     version: "1.0"
-    openshift.io/display-name: "12f Config Service"
+    openshift.io/display-name: "12f Registry Service"
 labels:
-  app: config-service
+  app: eureka-service
   createdBy: SV
 parameters:
   -
     name: APPLICATION_NAME
-    value: config-service
+    value: eureka-service
     description: Name of the application
     required: true
     displayName: Application Name
+  -
+    name: CONFIG_SERVICE
+    value: http://config-service
+    description: Config Service app and port
+    required: true
+    displayName: Config Service
   -
     name: GIT_URL
     value: https://github.com/srinivasa-vasu/openshift-12f.git
@@ -31,7 +37,7 @@ parameters:
     displayName: GIT Repo Branch
   -
     name: GIT_CONTEXT_DIR
-    value: config-service
+    value: eureka-service
     description: Source GIT Repository Context Directory
     required: true
     displayName: GIT Repo Context Directory
@@ -135,12 +141,16 @@ objects:
               ports:
                 -
                   name: app
-                  containerPort: 8888
+                  containerPort: 8761
                   protocol: TCP
                 -
                   name: jolokia
                   containerPort: 8778
                   protocol: TCP
+              env:
+                -
+                  name: config.service
+                  value: ${CONFIG_SERVICE}
               resources:
               imagePullPolicy: Always
           restartPolicy: Always
@@ -157,7 +167,7 @@ objects:
        -
          name: ${APPLICATION_NAME}
          port: 80
-         targetPort: 8888
+         targetPort: 8761
      selector:
        app: ${APPLICATION_NAME}
   -

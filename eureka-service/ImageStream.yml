@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ImageStream
+metadata:
+  name: eureka-service
+  labels:
+    app: eureka-service
+spec:
