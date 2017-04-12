@@ -11,7 +11,7 @@ Spring Cloud Registry Server on OpenShift
 
 > oc new-project 12f
 
-2. Run config server template yaml file which would create *ImageStream*, *BuildConfig*, *DeploymentConfig*, *Service* and *Route* in sequence
+2. Run registry server template yaml file which would create *ImageStream*, *BuildConfig*, *DeploymentConfig*, *Service* and *Route* in sequence
 
 > oc process -f EurekaServiceTemplate.yml | oc create -f -
 
@@ -41,7 +41,7 @@ This is more about using OC CLI to create the individual components
 
 3. Login to OCP and run the following commands,
 
-Create 12f project and install config-service
+4. Create 12f project and install [config-service](https://github.com/srinivasa-vasu/openshift-12f/tree/master/config-service)
 
 > oc new-build --name=eureka-service -l app=config-service fis-java-openshift:2.0~.
 
@@ -49,5 +49,9 @@ Create 12f project and install config-service
 
 > oc new-app eureka-service -l app=config-service -e config_service=http://config-service
 
-> oc expose svc/eureka-service
+> oc patch dc/eureka-service -p '{"spec":{"template":{"spec":{"containers":[{"name":"eureka-service","ports":[{"name":"app","containerPort":"8761","protocol":"TCP"}]}]}}}}'
+
+> oc patch svc/eureka-service -p '{"spec":{"ports":[{"name":"app","protocol":"tcp","port":"80","targetPort":8761}]}}'
+
+> oc expose svc/eureka-service --port=8761
 
