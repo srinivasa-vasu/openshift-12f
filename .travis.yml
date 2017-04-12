@@ -4,4 +4,4 @@ jdk:
 env:
   - SVC_DIR=config-service
   - SVC_DIR=eureka-service
-script: cd $SVC_DIR
+script: cd $SVC_DIR && mvn clean package -DskipTests
