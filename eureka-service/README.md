@@ -7,8 +7,7 @@ Spring Cloud Registry Server on OpenShift <sup>![Build Status](https://travis-ci
 
 ## Option 1: 
 
-1. Create a new-project (12f) in OCP, and install [config-service](https://github
-.com/srinivasa-vasu/openshift-12f/tree/master/config-service)
+1. Create a new-project (12f) in OCP, and install [config-service](https://github.com/srinivasa-vasu/openshift12f/tree/master/config-service)
 
 > oc project 12f
 
@@ -20,8 +19,7 @@ Spring Cloud Registry Server on OpenShift <sup>![Build Status](https://travis-ci
 
 Instead of running the template, OC objects can be created in sequence using the individual yaml files
 
-1. Create a new-project (12f) in OCP, and install [config-service](https://github
-.com/srinivasa-vasu/openshift-12f/tree/master/config-service)
+1. Create a new-project (12f) in OCP, and install [config-service](https://github.com/srinivasa-vasu/openshift-12f/tree/master/config-service)
 
 > oc project 12f
 
