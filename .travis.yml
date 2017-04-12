@@ -1,3 +1,7 @@
 language: java
 jdk:
   - oraclejdk8
+env:
+  - SVC_DIR=config-service
+  - SVC_DIR=eureka-service
+script: cd $SVC_DIR
