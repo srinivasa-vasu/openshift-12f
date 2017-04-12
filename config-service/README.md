@@ -2,7 +2,7 @@ Spring Cloud Config Server on OpenShift
 -----------------------------------------
 ![alt text](https://blog.openshift.com/wp-content/uploads/Logotype_RH_OpenShiftContainerPlatform_wLogo_CMYK_Black-1024x263.jpg "OCP")
 
-### Spring cloud server can be deployed in many ways, have listed down 3 most common ways in which people prefer to do:
+### Spring cloud server can be deployed in many ways, have listed down 3 most common ways:
 ***
 
 ## Option 1: 
