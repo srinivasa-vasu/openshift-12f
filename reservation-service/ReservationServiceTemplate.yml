@@ -147,7 +147,7 @@ objects:
               ports:
                 -
                   name: app
-                  containerPort: 8080
+                  containerPort: 8000
                   protocol: TCP
                 -
                   name: jolokia
@@ -157,6 +157,9 @@ objects:
                 -
                   name: config_service
                   value: ${CONFIG_SERVICE}
+                -
+                  name: eureka_service
+                  value: ${EUREKA_SERVICE}
               resources:
               imagePullPolicy: Always
           restartPolicy: Always
@@ -173,7 +176,7 @@ objects:
        -
          name: ${APPLICATION_NAME}
          port: 80
-         targetPort: 8080
+         targetPort: 8000
      selector:
        app: ${APPLICATION_NAME}
   -

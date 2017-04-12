@@ -42,7 +42,7 @@ spec:
           ports:
             -
               name: app
-              containerPort: 8080
+              containerPort: 8000
               protocol: TCP
             -
               name: jolokia
