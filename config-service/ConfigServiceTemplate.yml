@@ -3,9 +3,10 @@ kind: Template
 metadata:
   name: config-service
   annotations:
-    description: Application template for 12f spring-boot config server
+    description: Application template of 12f spring-boot config service
     tags: spring-boot,config-service,oc,12f
     version: "1.0"
+    openshift.io/display-name: "12f Config Service"
 labels:
   app: config-service
   createdBy: SV
@@ -16,6 +17,30 @@ parameters:
     description: Name of the application
     required: true
     displayName: Application Name
+  -
+    name: GIT_URL
+    value: https://github.com/srinivasa-vasu/openshift-12f.git
+    description: Source GIT Repository Path
+    required: true
+    displayName: GIT Repo
+  -
+    name: GIT_BRANCH
+    value: master
+    description: Source GIT Repository Branch
+    required: true
+    displayName: GIT Repo Branch
+  -
+    name: GIT_CONTEXT_DIR
+    value: config-service
+    description: Source GIT Repository Context Directory
+    required: true
+    displayName: GIT Repo Context Directory
+  -
+    name: IMAGE_STREAM_NAMESPACE
+    value: 12f
+    description: Namespace in which the ImageStreams are installed
+    required: true
+    displayName: Imagestream Namespace
 objects:
   -
     apiVersion: v1
@@ -50,9 +75,9 @@ objects:
       source:
         type: Git
         git:
-          uri: https://github.com/srinivasa-vasu/openshift-12f.git
-          ref: master
-        contextDir: config-service
+          uri: ${GIT_URL}
+          ref: ${GIT_BRANCH}
+        contextDir: ${GIT_CONTEXT_DIR}
       strategy:
         type: Source
         sourceStrategy:
@@ -93,6 +118,7 @@ objects:
                 ${APPLICATION_NAME}
             from:
               kind: ImageStreamTag
+              namespace: ${IMAGE_STREAM_NAMESPACE}
               name: ${APPLICATION_NAME}:latest
       replicas: 1
       selector:
@@ -108,7 +134,12 @@ objects:
               image: ${APPLICATION_NAME}
               ports:
                 -
+                  name: app
                   containerPort: 8888
+                  protocol: TCP
+                -
+                  name: jolokia
+                  containerPort: 8778
                   protocol: TCP
               resources:
               imagePullPolicy: Always
