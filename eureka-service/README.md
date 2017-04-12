@@ -43,11 +43,11 @@ This is more about using OC CLI to create the individual components
 
 4. Create 12f project and install [config-service](https://github.com/srinivasa-vasu/openshift-12f/tree/master/config-service)
 
-> oc new-build --name=eureka-service -l app=config-service fis-java-openshift:2.0~.
+> oc new-build --name=eureka-service -l app=eureka-service fis-java-openshift:2.0~.
 
 > oc start-build eureka-service --from-dir=. --follow
 
-> oc new-app eureka-service -l app=config-service -e config_service=http://config-service
+> oc new-app eureka-service -l app=eureka-service -e config_service=http://config-service
 
 > oc patch dc/eureka-service -p '{"spec":{"template":{"spec":{"containers":[{"name":"eureka-service","ports":[{"name":"app","containerPort":"8761","protocol":"TCP"}]}]}}}}'
 
