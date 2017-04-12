@@ -3,10 +3,10 @@ kind: Template
 metadata:
   name: reservation-client
   annotations:
-    description: Application template of 12f spring-boot registry service based on eureka
+    description: Application template of 12f spring-boot msa
     tags: spring-boot,reservation-client,oc,12f,msa
     version: "1.0"
-    openshift.io/display-name: "12f Registry Service"
+    openshift.io/display-name: "12f Reservation Client Micro-Service"
 labels:
   app: reservation-client
   createdBy: SV
