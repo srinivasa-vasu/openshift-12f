@@ -50,7 +50,7 @@ spec:
               protocol: TCP
           env:
             -
-              name: config.service
+              name: config_service
               value: http://config-service
           resources:
           imagePullPolicy: Always
