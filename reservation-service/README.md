@@ -2,8 +2,7 @@ Spring Boot microservice on OpenShift <sup>![Build Status](https://travis-ci.org
 -----------------------------------------
 ![OCP](https://blog.openshift.com/wp-content/uploads/Logotype_RH_OpenShiftContainerPlatform_wLogo_CMYK_Black-1024x263.jpg "OCP")
 
-### Spring boot micro service (leveraging msa libraries like eureka, config, hystrix and zipkin) can be deployed in many ways, have listed 
-down 3 most common ways:
+### Spring boot micro service (leveraging msa libraries like eureka, config, hystrix and zipkin) can be deployed in many ways, have listed down 3 most common ways:
 ***
 
 ## Option 1: 
@@ -14,7 +13,7 @@ down 3 most common ways:
 
 2. Run registry server template yaml file which would create *ImageStream*, *BuildConfig*, *DeploymentConfig*, *Service* and *Route* in sequence
 
-> oc process -f EurekaServiceTemplate.yml | oc create -f -
+> oc process -f ReservationServiceTemplate.yml | oc create -f -
 
 ## Option 2:
 
