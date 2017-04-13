@@ -151,6 +151,9 @@ objects:
                 -
                   name: config_service
                   value: ${CONFIG_SERVICE}
+                -
+                  name: SPRING_PROFILES_ACTIVE
+                  value: openshift
               resources:
               imagePullPolicy: Always
           restartPolicy: Always

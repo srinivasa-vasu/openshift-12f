@@ -52,6 +52,9 @@ spec:
             -
               name: config_service
               value: http://config-service
+            -
+              name: SPRING_PROFILES_ACTIVE
+              value: openshift
           resources:
           imagePullPolicy: Always
       restartPolicy: Always

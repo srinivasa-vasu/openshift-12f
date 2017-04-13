@@ -13,3 +13,13 @@ eureka:
     serviceUrl:
       defaultZone: ${eureka_service:http://localhost:8761/eureka}
 
+---
+spring:
+  profiles: openshift
+  cloud:
+    config:
+      uri: ${config_service:http://config_service}
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${eureka_service:http://eureka_service}

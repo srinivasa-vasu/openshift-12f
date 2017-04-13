@@ -55,6 +55,12 @@ spec:
             -
               name: eureka_service
               value: http://eureka-service/eureka
+            -
+              name: zipkin_service
+              value: http://zipkin-service
+            -
+              name: SPRING_PROFILES_ACTIVE
+              value: openshift
           resources:
           imagePullPolicy: Always
       restartPolicy: Always

@@ -55,6 +55,9 @@ spec:
             -
               name: eureka_service
               value: http://eureka-service/eureka
+            -
+              name: SPRING_PROFILES_ACTIVE
+              value: openshift
           resources:
           imagePullPolicy: Always
       restartPolicy: Always

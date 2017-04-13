@@ -30,6 +30,12 @@ parameters:
     required: true
     displayName: Registry Service
   -
+    name: ZIPKIN_SERVICE
+    value: http://zipkin-service
+    description: Zipkin Service app and port
+    required: true
+    displayName: Zipkin Distributed Tracing Service
+  -
     name: GIT_URL
     value: https://github.com/srinivasa-vasu/openshift-12f.git
     description: Source GIT Repository Path
@@ -163,6 +169,12 @@ objects:
                 -
                   name: peer_service
                   value: reservation-service
+                -
+                  name: zipkin_service
+                  value: ${ZIPKIN_SERVICE}
+                -
+                  name: SPRING_PROFILES_ACTIVE
+                  value: openshift
               resources:
               imagePullPolicy: Always
           restartPolicy: Always

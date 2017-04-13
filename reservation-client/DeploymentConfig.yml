@@ -58,6 +58,12 @@ spec:
             -
               name: peer_service
               value: reservation-service
+            -
+              name: zipkin_service
+              value: http://zipkin-service
+            -
+              name: SPRING_PROFILES_ACTIVE
+              value: openshift
           resources:
           imagePullPolicy: Always
       restartPolicy: Always

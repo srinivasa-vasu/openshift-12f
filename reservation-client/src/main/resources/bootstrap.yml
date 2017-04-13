@@ -4,6 +4,8 @@ spring:
   cloud:
     config:
       uri: ${config_service:http://localhost:8888}
+  zipkin:
+      base-url: ${zipkin_service:http://localhost:9411}
 eureka:
   client:
     serviceUrl:
@@ -12,3 +14,15 @@ peer:
   service:
     name: ${peer_service:reservation_service}
 
+---
+spring:
+  profiles: openshift
+  cloud:
+    config:
+      uri: ${config_service:http://config_service}
+  zipkin:
+      base-url: ${zipkin_service:http://zipkin_service}
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${eureka_service:http://eureka_service}

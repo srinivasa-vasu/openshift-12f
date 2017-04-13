@@ -160,6 +160,9 @@ objects:
                 -
                   name: eureka_service
                   value: ${EUREKA_SERVICE}
+                -
+                  name: SPRING_PROFILES_ACTIVE
+                  value: openshift
               resources:
               imagePullPolicy: Always
           restartPolicy: Always
