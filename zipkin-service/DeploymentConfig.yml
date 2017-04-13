@@ -1,0 +1,61 @@
+apiVersion: v1
+kind: DeploymentConfig
+metadata:
+  name: zipkin-service
+  labels:
+    app: zipkin-service
+spec:
+  strategy:
+    type: Rolling
+    rollingParams:
+      updatePeriodSeconds: 1
+      intervalSeconds: 1
+      timeoutSeconds: 600
+      maxUnavailable: 25%
+      maxSurge: 25%
+    resources:
+  triggers:
+    -
+      type: ConfigChange
+    -
+      type: ImageChange
+      imageChangeParams:
+        automatic: true
+        containerNames:
+          -
+            zipkin-service
+        from:
+          kind: ImageStreamTag
+          name: 'zipkin-service:latest'
+  replicas: 1
+  selector:
+    app: zipkin-service
+  template:
+    metadata:
+      labels:
+        app: zipkin-service
+    spec:
+      containers:
+        -
+          name: zipkin-service
+          image: zipkin-service
+          ports:
+            -
+              name: app
+              containerPort: 9411
+              protocol: TCP
+            -
+              name: jolokia
+              containerPort: 8778
+              protocol: TCP
+          env:
+            -
+              name: config_service
+              value: http://config-service
+            -
+              name: eureka_service
+              value: http://eureka-service/eureka
+          resources:
+          imagePullPolicy: Always
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
