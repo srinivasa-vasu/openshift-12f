@@ -10,7 +10,7 @@ listed down 3 most common ways:
 
 ## Option 1: 
 
-1. Create a new-project (12f) in OCP, and install [config-service](https://github.com/srinivasa-vasu/openshift-12f/tree/master/config-service) and [eureka-service](https://github.com/srinivasa-vasu/openshift-12f/tree/master/eureka-service)
+1. Create a new-project (12f) in OCP, and install [config-service](https://github.com/srinivasa-vasu/openshift-12f/tree/master/config-service), [eureka-service](https://github.com/srinivasa-vasu/openshift-12f/tree/master/eureka-service) and [zipkin-service](https://github.com/srinivasa-vasu/openshift-12f/tree/master/zipkin-service)
 
 > oc project 12f
 
@@ -22,7 +22,7 @@ listed down 3 most common ways:
 
 Instead of running the template, OC objects can be created in sequence using the individual yaml files
 
-1. Create a new-project (12f) in OCP, and install [config-service](https://github.com/srinivasa-vasu/openshift-12f/tree/master/config-service) and [eureka-service](https://github.com/srinivasa-vasu/openshift-12f/tree/master/eureka-service)
+1. Create a new-project (12f) in OCP, and install [config-service](https://github.com/srinivasa-vasu/openshift-12f/tree/master/config-service), [eureka-service](https://github.com/srinivasa-vasu/openshift-12f/tree/master/eureka-service) and [zipkin-service](https://github.com/srinivasa-vasu/openshift-12f/tree/master/zipkin-service)
 
 > oc project 12f
 
@@ -46,7 +46,7 @@ This is more about using OC CLI to create the individual components
 
 3. Login to OCP and run the following commands,
 
-4. Create 12f project and install and install [config-service](https://github.com/srinivasa-vasu/openshift-12f/tree/master/config-service) and [eureka-service](https://github.com/srinivasa-vasu/openshift-12f/tree/master/eureka-service)
+4. Create 12f project and install and install [config-service](https://github.com/srinivasa-vasu/openshift-12f/tree/master/config-service), [eureka-service](https://github.com/srinivasa-vasu/openshift-12f/tree/master/eureka-service) and [zipkin-service](https://github.com/srinivasa-vasu/openshift-12f/tree/master/zipkin-service)
 
 > oc new-build --name=reservation-client -l app=reservation-client fis-java-openshift:2.0~.
 
