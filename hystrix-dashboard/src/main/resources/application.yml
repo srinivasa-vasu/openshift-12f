@@ -1,0 +1,4 @@
+turbine:
+  app-config: reservation-service,reservation-client
+  aggregator:
+      clusterConfig: RESERVATION-SERVICE,RESERVATION-CLIENT

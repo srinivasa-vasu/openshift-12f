@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: hystrixdb-service
+  cloud:
+    config:
+      uri: ${config_service:http://localhost:8888}
+
+---
+spring:
+  profiles: openshift
+  cloud:
+    config:
+      uri: ${config_service:http://config_service}
