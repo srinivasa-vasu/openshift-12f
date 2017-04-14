@@ -4,6 +4,8 @@ jdk:
 env:
   - SVC_DIR=config-service
   - SVC_DIR=eureka-service
+  - SVC_DIR=zipkin-service
+  - SVC_DIR=hystrix-dashboard
   - SVC_DIR=reservation-service
   - SVC_DIR=reservation-client
 script: cd $SVC_DIR && mvn clean package -DskipTests
