@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ImageStream
 metadata:
-  name: hystrixdb-service
+  name: hystrix-dashboard
   labels:
-    app: hystrixdb-service
+    app: hystrix-dashboard
 spec:

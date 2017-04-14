@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: Route
 metadata:
-  name: hystrixdb-service
+  name: hystrix-dashboard
   labels:
-    app: hystrixdb-service
+    app: hystrix-dashboard
 spec:
   to:
     kind: Service
-    name: hystrixdb-service
+    name: hystrix-dashboard
     weight: 100
   port:
-    targetPort: hystrixdb-service
+    targetPort: hystrix-dashboard

@@ -1,19 +1,19 @@
 apiVersion: v1
 kind: Template
 metadata:
-  name: hystrixdb-service
+  name: hystrix-dashboard
   annotations:
     description: Application template of 12f spring-boot hystrixdb service
-    tags: spring-boot,hystrixdb-service,oc,12f,msa
+    tags: spring-boot,hystrix-dashboard,oc,12f,msa
     version: "1.0"
     openshift.io/display-name: "12f hystrix dashboard service"
 labels:
-  app: hystrixdb-service
+  app: hystrix-dashboard
   createdBy: SV
 parameters:
   -
     name: APPLICATION_NAME
-    value: hystrixdb-service
+    value: hystrix-dashboard
     description: Name of the application
     required: true
     displayName: Application Name
@@ -43,7 +43,7 @@ parameters:
     displayName: GIT Repo Branch
   -
     name: GIT_CONTEXT_DIR
-    value: hystrixdb-service
+    value: hystrix-dashboard
     description: Source GIT Repository Context Directory
     required: true
     displayName: GIT Repo Context Directory

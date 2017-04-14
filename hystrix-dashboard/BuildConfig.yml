@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: BuildConfig
 metadata:
-  name: hystrixdb-service
+  name: hystrix-dashboard
   labels:
-    app: hystrixdb-service
+    app: hystrix-dashboard
 spec:
   triggers:
     -
@@ -24,7 +24,7 @@ spec:
     git:
       uri: "https://github.com/srinivasa-vasu/openshift-12f.git"
       ref: "master"
-    contextDir: "hystrixdb-service"
+    contextDir: "hystrix-dashboard"
   strategy:
     type: Source
     sourceStrategy:
@@ -36,4 +36,4 @@ spec:
   output:
     to:
       kind: ImageStreamTag
-      name: 'hystrixdb-service:latest'
+      name: 'hystrix-dashboard:latest'

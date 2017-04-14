@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: DeploymentConfig
 metadata:
-  name: hystrixdb-service
+  name: hystrix-dashboard
   labels:
-    app: hystrixdb-service
+    app: hystrix-dashboard
 spec:
   strategy:
     type: Rolling
@@ -23,22 +23,22 @@ spec:
         automatic: true
         containerNames:
           -
-            hystrixdb-service
+            hystrix-dashboard
         from:
           kind: ImageStreamTag
-          name: 'hystrixdb-service:latest'
+          name: 'hystrix-dashboard:latest'
   replicas: 1
   selector:
-    app: hystrixdb-service
+    app: hystrix-dashboard
   template:
     metadata:
       labels:
-        app: hystrixdb-service
+        app: hystrix-dashboard
     spec:
       containers:
         -
-          name: hystrixdb-service
-          image: hystrixdb-service
+          name: hystrix-dashboard
+          image: hystrix-dashboard
           ports:
             -
               name: app
