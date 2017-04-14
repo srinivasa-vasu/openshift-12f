@@ -104,3 +104,12 @@ class Reservation {
         this.reservationName = reservationName;
     }
 }
+
+@RestController
+class HealthController {
+
+    @RequestMapping(method = RequestMethod.GET, value = "/healthz")
+    public String health() {
+        return "I'm OK";
+    }
+}

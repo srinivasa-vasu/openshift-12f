@@ -42,7 +42,7 @@ spec:
           ports:
             -
               name: app
-              containerPort: 8000
+              containerPort: 9999
               protocol: TCP
             -
               name: jolokia
@@ -64,6 +64,18 @@ spec:
             -
               name: SPRING_PROFILES_ACTIVE
               value: openshift
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: 9999
+            initialDelaySeconds: 15
+            timeoutSeconds: 1
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 9999
+            initialDelaySeconds: 60
+            timeoutSeconds: 1
           resources:
           imagePullPolicy: Always
       restartPolicy: Always

@@ -32,6 +32,7 @@ spec:
         kind: ImageStreamTag
         namespace: openshift
         name: 'fis-java-openshift:2.0'
+      incremental: true
   output:
     to:
       kind: ImageStreamTag

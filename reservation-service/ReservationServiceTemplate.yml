@@ -172,6 +172,18 @@ objects:
                 -
                   name: SPRING_PROFILES_ACTIVE
                   value: openshift
+              readinessProbe:
+                httpGet:
+                  path: /healthz
+                  port: 8000
+                initialDelaySeconds: 15
+                timeoutSeconds: 1
+              livenessProbe:
+                httpGet:
+                  path: /healthz
+                  port: 8000
+                initialDelaySeconds: 60
+                timeoutSeconds: 1
               resources:
               imagePullPolicy: Always
           restartPolicy: Always
