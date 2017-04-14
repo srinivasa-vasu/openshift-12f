@@ -1,8 +1,8 @@
-Spring Boot Hystrix dashboard on OpenShift <sup>![Build Status](https://travis-ci.org/srinivasa-vasu/openshift-12f.svg?branch=master)</sup>
+Spring Cloud Hystrix Dashboard Service on OpenShift <sup>![Build Status](https://travis-ci.org/srinivasa-vasu/openshift-12f.svg?branch=master)</sup>
 -----------------------------------------
 ![OCP](https://blog.openshift.com/wp-content/uploads/Logotype_RH_OpenShiftContainerPlatform_wLogo_CMYK_Black-1024x263.jpg "OCP")
 
-### Spring boot Hystrix dashbaord can be deployed in many ways, 
+### Spring Cloud Hystrix dashbaord service can be deployed in many ways, 
 have listed down 3 most common ways:
 ***
 
