@@ -166,14 +166,14 @@ objects:
               readinessProbe:
                 httpGet:
                   path: /healthz
-                  port: 9411
-                initialDelaySeconds: 20
+                  port: 80
+                initialDelaySeconds: 300
                 timeoutSeconds: 1
               livenessProbe:
                 httpGet:
                   path: /healthz
-                  port: 9411
-                initialDelaySeconds: 20
+                  port: 80
+                initialDelaySeconds: 300
                 timeoutSeconds: 1
               resources:
               imagePullPolicy: Always
