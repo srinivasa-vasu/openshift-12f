@@ -18,8 +18,8 @@ spring:
   profiles: openshift
   cloud:
     config:
-      uri: ${config_service:http://config_service}
+      uri: ${config_service:http://config-service}
 eureka:
   client:
     serviceUrl:
-      defaultZone: ${eureka_service:http://eureka_service}
+      defaultZone: ${eureka_service:http://eureka-service}

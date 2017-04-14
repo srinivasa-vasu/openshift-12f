@@ -4,10 +4,20 @@ spring:
   cloud:
     config:
       uri: ${config_service:http://localhost:8888}
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${eureka_service:http://localhost:8761/eureka}
+  instance:
+    prefer-ip-address: true
 
 ---
 spring:
   profiles: openshift
   cloud:
     config:
-      uri: ${config_service:http://config_service}
+      uri: ${config_service:http://config-service}
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${eureka_service:http://eureka-service}

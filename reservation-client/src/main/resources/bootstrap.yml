@@ -14,17 +14,17 @@ eureka:
     prefer-ip-address: true
 peer:
   service:
-    name: ${peer_service:reservation_service}
+    name: ${peer_service:reservation-service}
 
 ---
 spring:
   profiles: openshift
   cloud:
     config:
-      uri: ${config_service:http://config_service}
+      uri: ${config_service:http://config-service}
   zipkin:
-      base-url: ${zipkin_service:http://zipkin_service}
+      base-url: ${zipkin_service:http://zipkin-service}
 eureka:
   client:
     serviceUrl:
-      defaultZone: ${eureka_service:http://eureka_service}
+      defaultZone: ${eureka_service:http://eureka-service}
