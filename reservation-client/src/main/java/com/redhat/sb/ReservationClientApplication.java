@@ -1,7 +1,8 @@
 package com.redhat.sb;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
@@ -19,8 +20,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.stream.Collectors;
 
 @SpringBootApplication
@@ -30,7 +31,7 @@ import java.util.stream.Collectors;
 @EnableFeignClients
 public class ReservationClientApplication {
 
-    private static final Logger LOG = Logger.getLogger(ReservationClientApplication.class);
+    private static final Logger LOG = LoggerFactory.getLogger(ReservationClientApplication.class);
 
     public static void main(String[] args) {
         SpringApplication.run(ReservationClientApplication.class, args);
@@ -51,7 +52,7 @@ public class ReservationClientApplication {
 @RequestMapping("/reservations")
 class ReservationApiGatewayRestController {
 
-    private static final Logger LOG = Logger.getLogger(ReservationApiGatewayRestController.class);
+    private static final Logger LOG = LoggerFactory.getLogger(ReservationApiGatewayRestController.class);
 
     private ReservationService reservationService;
 
@@ -60,7 +61,7 @@ class ReservationApiGatewayRestController {
     }
 
     public Collection<String> getReservationNamesFallback() {
-        return Collections.emptyList();
+        return Arrays.asList("Fallback: NA-AIR");
     }
 
     @RequestMapping("/names")
