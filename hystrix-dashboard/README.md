@@ -14,7 +14,7 @@ have listed down 3 most common ways:
 
 2. Run registry server template yaml file which would create *ImageStream*, *BuildConfig*, *DeploymentConfig*, *Service* and *Route* in sequence
 
-> oc process -f ZipkinServiceTemplate.yml | oc create -f -
+> oc process -f HystrixDBServiceTemplate.yml | oc create -f -
 
 ## Option 2:
 
@@ -40,23 +40,22 @@ This is more about using OC CLI to create the individual components
 
 1. Check out the repo to the local file system
 
-2. Navigate to zipkin-service directory
+2. Navigate to hystrix-dashboard directory
 
 3. Login to OCP and run the following commands,
 
 4. Create 12f project and install and install [config-service](https://github.com/srinivasa-vasu/openshift-12f/tree/master/config-service) and [eureka-service](https://github.com/srinivasa-vasu/openshift-12f/tree/master/eureka-service)
 
-> oc new-build --name=zipkin-service -l app=zipkin-service fis-java-openshift:2.0~.
+> oc new-build --name=hystrix-dashboard -l app=hystrix-dashboard fis-java-openshift:2.0~.
 
-> oc start-build zipkin-service --from-dir=. --follow
+> oc start-build hystrix-dashboard --from-dir=. --follow
 
-> oc new-app zipkin-service -l app=zipkin-service -e config_service=http://config-service -e 
+> oc new-app hystrix-dashboard -l app=hystrix-dashboard -e config_service=http://config-service -e 
 eureka_service=http://eureka-service/eureka
 
-> oc patch dc/zipkin-service -p '{"spec":{"template":{"spec":{"containers":[{"name":"zipkin-service","ports":[{"name":"app",
-"containerPort":"9411","protocol":"TCP"}]}]}}}}'
+> oc patch dc/hystrix-dashboard -p '{"spec":{"template":{"spec":{"containers":[{"name":"hystrix-dashboard","ports":[{"name":"app","containerPort":"8010","protocol":"TCP"}]}]}}}}'
 
-> oc patch svc/zipkin-service -p '{"spec":{"ports":[{"name":"app","protocol":"tcp","port":"80","targetPort":9411}]}}'
+> oc patch svc/hystrix-dashboard -p '{"spec":{"ports":[{"name":"app","protocol":"tcp","port":"80","targetPort":8010}]}}'
 
-> oc expose svc/zipkin-service --port=9411
+> oc expose svc/hystrix-dashboard --port=8010
 
