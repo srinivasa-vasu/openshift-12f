@@ -1,0 +1,155 @@
+apiVersion: v1
+kind: Template
+metadata:
+  name: eureka-service
+  annotations:
+    description: Application template of 12f spring-boot registry service based on eureka
+    tags: spring-boot,eureka-service,oc,12f,registry
+    version: "1.0"
+    openshift.io/display-name: "12f Registry Service"
+labels:
+  app: eureka-service
+  createdBy: SV
+parameters:
+  -
+    name: APPLICATION_NAME
+    value: eureka-service
+    description: Name of the application
+    required: true
+    displayName: Application Name
+  -
+    name: CONFIG_SERVICE
+    value: http://config-service
+    description: Config Service app and port
+    required: true
+    displayName: Config Service
+  -
+    name: GIT_URL
+    value: https://github.com/srinivasa-vasu/openshift-12f.git
+    description: Source GIT Repository Path
+    required: true
+    displayName: GIT Repo
+  -
+    name: GIT_BRANCH
+    value: master
+    description: Source GIT Repository Branch
+    required: true
+    displayName: GIT Repo Branch
+  -
+    name: GIT_CONTEXT_DIR
+    value: eureka-service
+    description: Source GIT Repository Context Directory
+    required: true
+    displayName: GIT Repo Context Directory
+  -
+    name: IMAGE_STREAM_NAMESPACE
+    value: 12f
+    description: Namespace in which the ImageStreams are installed
+    required: true
+    displayName: Imagestream Namespace
+objects:
+  -
+    apiVersion: v1
+    kind: ImageStream
+    metadata:
+      name: ${APPLICATION_NAME}
+      labels:
+        app: ${APPLICATION_NAME}
+    spec:
+  -
+    apiVersion: v1
+    kind: BuildConfig
+    metadata:
+      name: ${APPLICATION_NAME}
+      labels:
+        app: ${APPLICATION_NAME}
+    spec:
+      triggers:
+        -
+          type: GitHub
+          github:
+            secret: secret101
+        -
+          type: Generic
+          generic:
+            secret: secret201
+        -
+          type: ImageChange
+        -
+          type: ConfigChange
+      runPolicy: Serial
+      source:
+        type: Git
+        git:
+          uri: ${GIT_URL}
+          ref: ${GIT_BRANCH}
+        contextDir: ${GIT_CONTEXT_DIR}
+      strategy:
+        type: Source
+        sourceStrategy:
+          from:
+            kind: ImageStreamTag
+            namespace: openshift
+            name: fis-java-openshift:2.0
+      output:
+        to:
+          kind: ImageStreamTag
+          name: ${APPLICATION_NAME}:latest
+  -
+    apiVersion: apps/v1beta1
+    kind: StatefulSet
+    metadata:
+      name: ${APPLICATION_NAME}
+    spec:
+      serviceName: ${APPLICATION_NAME}
+      replicas: 2
+      template:
+        metadata:
+          labels:
+            app: ${APPLICATION_NAME}
+        spec:
+          terminationGracePeriodSeconds: 10
+          containers:
+          - name: ${APPLICATION_NAME}
+            image: ${APPLICATION_NAME}
+            ports:
+            - name: http
+              containerPort: 8761
+              protocol: TCP
+            -
+              name: jolokia
+              containerPort: 8778
+              protocol: TCP
+            env:
+            # StatefulSet specific configuration
+            - name: SPRING_PROFILES_ACTIVE
+              value: openshift, statefulset
+  -
+   apiVersion: v1
+   kind: Service
+   metadata:
+     name: ${APPLICATION_NAME}
+     labels:
+       app: ${APPLICATION_NAME}
+   spec:
+     ports:
+       -
+         name: ${APPLICATION_NAME}
+         port: 80
+         targetPort: 8761
+     selector:
+       app: ${APPLICATION_NAME}
+  -
+    apiVersion: v1
+    kind: Route
+    metadata:
+      name: ${APPLICATION_NAME}
+      labels:
+        app: ${APPLICATION_NAME}
+    spec:
+      to:
+        kind: Service
+        name: ${APPLICATION_NAME}
+        weight: 100
+      port:
+        targetPort: ${APPLICATION_NAME}

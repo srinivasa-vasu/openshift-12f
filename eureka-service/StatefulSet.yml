@@ -1,0 +1,28 @@
+apiVersion: apps/v1beta1
+kind: StatefulSet
+metadata:
+  name: eureka-service
+spec:
+  serviceName: eureka-service
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: eureka-service
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+      - name: eureka-service
+        image: eureka-service
+        ports:
+        - name: http
+          containerPort: 8761
+          protocol: TCP
+        -
+          name: jolokia
+          containerPort: 8778
+          protocol: TCP
+        env:
+        # StatefulSet specific configuration
+        - name: SPRING_PROFILES_ACTIVE
+          value: openshift, statefulset
