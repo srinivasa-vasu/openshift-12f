@@ -11,23 +11,3 @@ spring:
   cloud:
     config:
       uri: ${config_service:http://config-service}
----
-spring:
-  profiles: openshift_sf
-  cloud:
-    config:
-      uri: ${config_service:http://config-service}      
-eureka:
-    client:
-      enabled: true
-      healthcheck:
-        enabled: true
-      fetch-registry: true
-      register-with-eureka: true
-      instance-info-replication-interval-seconds: 10
-      registry-fetch-interval-seconds: 10
-    instance:
-      lease-renewal-interval-in-seconds: 5
-      lease-expiration-duration-in-seconds: 10
-      metadata-map:
-        zone: primary
