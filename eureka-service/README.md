@@ -57,3 +57,7 @@ This is more about using OC CLI to create the individual components
 
 > oc expose svc/eureka-service --port=8761
 
+## StatefulSet:
+
+There is also a **statefulset** version of registry server. Use StatefulSet.yml instead of DeploymentConfig.yml to configure the registry using statefulset. Please note statefulset is in 'Technolgy Preview' as of OCP-3.5/K8s-1.5.
+
